@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input class="input" :placeholder="placeholder" :type="type"/>
+        <input ref="input" class="input" :placeholder="placeholder" :type="type" @change="previewImage"/>
     </div>
 </template>
 <script>
@@ -9,6 +9,18 @@ export default{
     props:{
         placeholder: String,
         type: String
+    },
+    methods:{
+        previewImage(){
+            if(this.type == "file"){
+                const file = this.$refs.input.files[0];
+                const url = URL.createObjectURL(file);
+                this.$emit("url", url)
+            } else {
+                const value = this.$refs.input.value;
+                this.$emit("input", value);
+            }
+        }
     }
 }
 </script>

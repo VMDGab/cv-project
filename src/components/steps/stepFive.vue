@@ -1,27 +1,26 @@
 <template>
     <div class="one">
         <DefaultTitle 
-        title="Informações de contato"
+        title="Experiência Profissional"
+        subtitle="Preencha apenas sobre seu ultimo trabalho"
         />
-        <Input placeholder="Telefone"/>
-        <Input placeholder="Email"/>
-        <Input placeholder="Linkedin"/>
-        <Input placeholder="Cep"/>
+        <Input placeholder="Nome da empresa"/>
+        <Input placeholder="Área"/>
+       <Date/>
 
     </div>
 </template>
 <script>
 import DefaultTitle from '../defaultTitle.vue';
 import Input from '../defaultInput.vue';
-import Radio from '../radioInput.vue';
+import Date from '../dateInput.vue';
 
 export default{
-    name: "StepTwo",
+    name: "StepThree",
     components:{
         DefaultTitle,
+        Date,
         Input,
-        Radio,
     }
 }
 </script>
- 
