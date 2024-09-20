@@ -2,13 +2,13 @@
     <div class="radio">
         <span class="LabelTitle">Sexo</span>
         <div class="inputContainer">
-            <input  type="radio" name="sexo"/> <label class="Label">Masc</label>
+            <input type="radio" value="masc" name="sexo" v-model="selected" @change="chkSelection"/> <label class="Label">Masc</label>
         </div>
         <div class="inputContainer">
-            <input type="radio" name="sexo"/> <label class="Label">Fem</label>
+            <input type="radio" name="sexo" value="fem" v-model="selected" @change="chkSelection"/> <label class="Label">Fem</label>
         </div>    
         <div class="inputContainer">
-            <input type="radio" name="sexo"/> <label class="Label">Outro</label>
+            <input type="radio" name="sexo" value="outro" v-model="selected" @change="chkSelection"/> <label class="Label">Outro</label>
         </div>
     </div>
 </template>
@@ -36,6 +36,20 @@
 </style>
 <script>
 export default{
-    name:"Radio"
+    name:"Radio",
+    data(){
+        return {
+            selected: null
+        }
+    },
+    methods: {
+        chkSelection() {
+      if (this.selected) {
+        this.$emit("gender", this.selected)
+      } else{
+        this.$emit("error", true)
+      }
+    }
+  }
 }
 </script>

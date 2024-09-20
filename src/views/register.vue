@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <form >
-      <component :is="currentStep"/>
+      <component :is="currentStep" @update="updateData" @error="isValidate"/>
       <div class="btns">
         <Button ref="mainBtn" class="btn" @click.prevent="nextStep">Próxima etapa</Button>
         <Button class="btnClear" >Limpar</Button>
@@ -32,11 +32,29 @@ export default {
   },
   data(){
    return{
-    currentStep : StepOne
+    currentStep : StepOne,
+    curriculum: {
+      name: '',
+      profession: '',
+      photo: '',
+    },
+    validate: false
    }
   },
   methods:{
+    isValidate(error){
+      this.validate = error
+    },
+    updateData(update){
+      this.curriculum.name = update.name
+      this.curriculum.profession = update.profession
+      this.curriculum.photo = update.photo
+    },
     nextStep(){
+      if(this.validate){
+        alert("Preencha todos os campos")
+        return;
+      }
       switch(this.currentStep){
         case StepOne:
           this.currentStep = StepTwo

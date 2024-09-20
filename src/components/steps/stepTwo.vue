@@ -6,7 +6,8 @@
         <Input placeholder="Telefone"/>
         <Input placeholder="Email"/>
         <Input placeholder="Linkedin"/>
-        <Input placeholder="Cep"/>
+        <Input placeholder="Cep"
+        />
 
     </div>
 </template>

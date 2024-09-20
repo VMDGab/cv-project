@@ -5,10 +5,10 @@
         subtitle="Preencha suas informações e crie seu currículo digital."
         />
         <Input placeholder="Nome" @input="saveName"/>
-        <Input placeholder="Profissão" @value="saveProfession"/>
+        <Input placeholder="Profissão" @input="saveProfession"/>
         <Input ref="fileInput" class="file" placeholder="Foto" type="file" @url="previewImage"/>
         <img class="preview" :src="imagePreview" ref="preview"/>
-        <Radio/>
+        <Radio @gender="handleGender" />
 
     </div>
 </template>
@@ -27,19 +27,44 @@ export default{
     data() {
         return {
             imagePreview: null,
-            curriculum: []
+            curriculum: {
+            name: '',
+            profession: '',
+            photo: '',
+            gender: ''
+        }
         };
     },
+    mounted(){
+        this.validateFields()
+    },
     methods:{
+        handleGender(gender){
+            this.curriculum.gender = gender
+        },
        previewImage(url){
         this.imagePreview = url
-       },
+        this.curriculum.photo = url
+        this.validateFields()
+        },
        saveName(value){
-        this.curriculum.push({ name: value})
+        this.curriculum.name = value
+        this.validateFields()
        },
        saveProfession(value) {
-        this.curriculum.push({ profession: value})
-       }
+        this.curriculum.profession = value
+        this.validateFields()
+    },
+    validateFields() {
+      const { name, profession, photo } = this.curriculum;
+      if (!name || !profession || !photo) {
+        this.$emit("error", true);  // Certifique-se de que o nome do evento está correto
+      }
+      else {
+        this.$emit("error", false);
+        this.$emit("update", this.curriculum);
+      }
+    }
        
     }
 }
