@@ -37,21 +37,71 @@ export default {
       name: '',
       profession: '',
       photo: '',
+      city: '',
+      state: '',
+      street:'',
+      number: '',
+      linkedin: '',
+      email: '',
+      phoneNumber: '',
+      skills: [],
+      collegeStart: '',
+      collegeEnd: '',
+      collegeName: '',
+      course : '',
+      enterpriseStart: '',
+      enterpriseEnd: '',
+      enterpriseName: '',
+      area : '',
+      aboutProfile: "",
+      aboutLastJob: ""
     },
-    validate: false
+    noValidate: false
    }
   },
   methods:{
     isValidate(error){
-      this.validate = error
+      this.noValidate = error
     },
     updateData(update){
-      this.curriculum.name = update.name
-      this.curriculum.profession = update.profession
-      this.curriculum.photo = update.photo
+      switch(this.currentStep){
+        case StepOne:
+          this.curriculum.name = update.name
+          this.curriculum.profession = update.profession
+          this.curriculum.photo = update.photo
+          break;
+        case StepTwo:
+          this.curriculum.city = update.city
+          this.curriculum.state = update.state
+          this.curriculum.number = update.number
+          this.curriculum.linkedin = update.linkedin
+          this.curriculum.email = update.email
+          this.curriculum.phoneNumber = update.phoneNumber
+          this.curriculum.street = update.street
+          break;
+        case StepThree:
+        this.curriculum.skills = [...update];
+          break;
+        case StepFour:
+          this.curriculum.collegeStart = update.start
+          this.curriculum.collegeEnd = update.end
+          this.curriculum.collegeName = update.collegeName
+          this.curriculum.course = update.course
+          break;
+        case StepFive:
+          this.curriculum.enterpriseStart = update.start
+          this.curriculum.enterpriseEnd = update.end
+          this.curriculum.enterpriseName = update.enterpriseName
+          this.curriculum.area = update.area
+          break;
+        case StepSix:
+          this.curriculum.aboutProfile = update.aboutProfile
+          this.curriculum.aboutLastJob = update.aboutLastJob
+          break;
+      }
     },
     nextStep(){
-      if(this.validate){
+      if(this.noValidate){
         alert("Preencha todos os campos")
         return;
       }
@@ -72,6 +122,8 @@ export default {
           this.currentStep = StepSix
           this.$refs.mainBtn.textContent = "Cadastrar"
           break;
+        case StepSix:
+        this.$router.push({ name: 'cv', params:  this.curriculum });
       }
     }
   }

@@ -3,7 +3,7 @@
         <DefaultTitle 
         title="Suas habilidades"
         />
-       <Chk/>
+       <Chk @update="handleUpdate"/>
 
     </div>
 </template>
@@ -16,6 +16,30 @@ export default{
     components:{
         DefaultTitle,
         Chk,
+    },
+    data(){
+        return{
+            skills: []
+        }
+    },
+    mounted(){
+        this.validateFields()
+    },
+    methods:{
+        handleUpdate(update){
+            this.skills = [...update];
+            this.validateFields();
+        },
+        validateFields() {
+            
+            if (this.skills.length <= 0) {
+             this.$emit("error", true);  // Certifique-se de que o nome do evento está correto
+            }
+            else {
+             this.$emit("error", false);
+             this.$emit("update", this.skills);
+            }
+        }
     }
 }
 </script>
