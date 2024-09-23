@@ -16,6 +16,7 @@
 .radio{
     display: flex;
     align-items: center;
+    margin-top: 15px;
 }
 
 .inputContainer{

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <span class="LabelTitle">Início/fim</span>
         <div class="dateContainer">
             <input type="date" ref="start" @change="handleStart"/> 
@@ -43,11 +43,16 @@ export default{
  justify-content: space-between;
  width: 50%;
  padding-top: 10px;
+ 
 }
 .LabelTitle{
     font-family: var(--font);
     font-size: 24px;
     font-weight: 600;
     color: var(--subtitle);
+    
+}
+.container{
+    margin-top: 30px;
 }
 </style>

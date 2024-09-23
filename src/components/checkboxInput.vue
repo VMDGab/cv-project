@@ -74,6 +74,7 @@ export default{
 .chkContainer{
     display: flex;
     justify-content: flex-start;
+    margin-top: 70px;
 }
 
 .chk{

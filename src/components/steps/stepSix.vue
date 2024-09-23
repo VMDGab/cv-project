@@ -4,7 +4,7 @@
         title="Sobre você"
         subtitle="Fale um pouco sobre sua experiência profissional"
         />
-        <span class="subtitle">Descrição do perfil do profissional</span>
+        <span class="subtitle space">Descrição do perfil do profissional</span>
         <textarea ref="profile" class="textArea" @change="saveProfile"/>
 
         <span class="subtitle">O que fez na última empresa?</span>
@@ -60,10 +60,14 @@ export default{
 .six{
     display: flex;
     flex-direction: column;
+    
 }
 
 .textArea{
     margin-bottom: 20px;
     height: 100px;
+}
+.space{
+    margin-top: 30px;
 }
 </style>

@@ -56,7 +56,7 @@ export default{
     outline: none;
     color: var(--title);
     font-weight: 500;
-    margin-bottom: 70px;
+    margin-top: 70px;
 }
 .inputNumber{
     border: none;
@@ -66,6 +66,6 @@ export default{
     outline: none;
     color: var(--title);
     font-weight: 500;
-    margin-bottom: 70px;
+    margin-top: 70px;
 }
 </style>

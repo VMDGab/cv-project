@@ -8,6 +8,12 @@
     </div>
     </form>
     <img class="icon" src="../assets/curriculo.svg"/>
+    <dialog ref="error" class="modal">
+      <div class="error">
+        <span class="subtitle">Preencha todos os campos</span>
+        <button class="modalBtn" @click="close">Ok</button>
+      </div>
+    </dialog>
   </div>
 </template>
 
@@ -60,6 +66,9 @@ export default {
    }
   },
   methods:{
+    close(){
+      this.$refs.error.close()
+    },
     isValidate(error){
       this.noValidate = error
     },
@@ -102,7 +111,7 @@ export default {
     },
     nextStep(){
       if(this.noValidate){
-        alert("Preencha todos os campos")
+        this.$refs.error.showModal()
         return;
       }
       switch(this.currentStep){
@@ -165,5 +174,33 @@ export default {
     color: #FFF;
     font-size: 16px;
     font-weight: 600;
+}
+.error{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 100px;
+  color: black;
+  justify-content: space-around;
+  align-items: center
+}
+.modal{
+  border-radius: 20px;
+  border: none;
+}
+
+.modal::backdrop{
+  background-color: #212121c3;
+}
+.modalBtn{
+  width: 140px;
+  height: 30px;
+  border: none;
+  background-color: var(--clear);
+  font-family: var(--font);
+  color: #FFF;
+  font-size: 16px;
+  border-radius: 20px;
+  font-weight: 700;
 }
 </style>

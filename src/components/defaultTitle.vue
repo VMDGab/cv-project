@@ -18,7 +18,6 @@ export default{
 .default{
     display: flex;
     flex-direction: column;
-    margin-bottom: 70px;
 }
 .title{
     color: var(--title);
